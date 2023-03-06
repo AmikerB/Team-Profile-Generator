@@ -3,12 +3,11 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "type": "module",
   "scripts": {
     "test": "jest"
   },
   "dependencies": {
-    "inquirer": "^8.2.5"
+    "inquirer": "^8.0.0"
   },
   "devDependencies": {
     "jest": "^29.4.3"
