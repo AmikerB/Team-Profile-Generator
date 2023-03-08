@@ -11,7 +11,6 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 const render = require("./src/page-template.js");
 const { default: generate } = require("@babel/generator");
 
-
 // TODO: Write Code to gather information about the development team members, and render the HTML file.
 const managerQuestions = [
     {
@@ -133,10 +132,15 @@ function askNext(team) {
                 // Use the answers to generate HTML content for the team page
                 const htmlContent = render(team);
 
+                // Create the output directory if it doesn't exist
+                if (!fs.existsSync(OUTPUT_DIR)) {
+                    fs.mkdirSync(OUTPUT_DIR);
+                };
+
                 // Write the HTML to a file
-                fs.writeFile(outputPath, htmlContent, (err) => {
+                fs.writeFileSync(outputPath, htmlContent, (err) => {
                     // if error console.log the error if not display the message
-                    err ? console.error(err) : console.log("Successfully generated team member's page")
+                    err ? console.error(err) : console.log(`Successfully generated team member's page and saved to ${outputPath}`)
                 })
             // break;
             //     default:
