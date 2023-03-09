@@ -152,11 +152,13 @@ function askNext(team) {
                 if (!fs.existsSync(OUTPUT_DIR)) {
                     fs.mkdirSync(OUTPUT_DIR);
                 };
-                // Write the HTML to a file
-                fs.writeFileSync(outputPath, htmlContent, (err) => {
-                    // if error console.log the error if not display the message
-                    err ? console.error(err) : console.log(`Successfully generated team member's page and saved to ${outputPath}`)
-                })
+                try {
+                    // Write the HTML to a file
+                    fs.writeFileSync(outputPath, htmlContent);
+                    console.log("Successfully generated team member's page and saved to output folder.");
+                } catch (err) {
+                    console.log(err);
+                }
                 break;
             default:
                 console.log("Invalid option selected");
