@@ -11,28 +11,39 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 const render = require("./src/page-template.js");
 const { default: generate } = require("@babel/generator");
 
-
 // TODO: Write Code to gather information about the development team members, and render the HTML file.
+// function to ensure user does not leave inputs empty
+function validateInput(value) {
+    if (value.trim().length > 0) {
+        return true;
+    }
+    return "Please enter a non-empty value.";
+}
+
 const managerQuestions = [
     {
         type: "input",
         name: "name",
-        message: "What is the team Managers name?"
+        message: "What is the team Managers name?",
+        validate: validateInput
     },
     {
         type: "input",
         name: "id",
-        message: "What is the employee id?"
+        message: "What is the employee id?",
+        validate: validateInput
     },
     {
         type: "input",
         name: "email",
-        message: "What is the employee's email address?"
+        message: "What is the employee's email address?",
+        validate: validateInput
     },
     {
         type: "input",
         name: "officeNumber",
-        message: "What is the office number?"
+        message: "What is the office number?",
+        validate: validateInput
     }
 ];
 
@@ -40,22 +51,26 @@ const engineerQuestions = [
     {
         type: "input",
         name: "name",
-        message: "What is the team Engineer's name?"
+        message: "What is the team Engineer's name?",
+        validate: validateInput
     },
     {
         type: "input",
         name: "id",
-        message: "What is the employee id?"
+        message: "What is the employee id?",
+        validate: validateInput
     },
     {
         type: "input",
         name: "email",
-        message: "What is the employee's email address?"
+        message: "What is the employee's email address?",
+        validate: validateInput
     },
     {
         type: "input",
         name: "github",
-        message: "What is the Engineer's GitHub username?"
+        message: "What is the Engineer's GitHub username?",
+        validate: validateInput
     }
 ];
 
@@ -63,22 +78,26 @@ const InternQuestions = [
     {
         type: "input",
         name: "name",
-        message: "What is the Intern's name?"
+        message: "What is the Intern's name?",
+        validate: validateInput
     },
     {
         type: "input",
         name: "id",
-        message: "What is the employee id?"
+        message: "What is the employee id?",
+        validate: validateInput
     },
     {
         type: "input",
         name: "email",
-        message: "What is the employee's email address?"
+        message: "What is the employee's email address?",
+        validate: validateInput
     },
     {
         type: "input",
         name: "school",
-        message: "What school did the Intern go to?"
+        message: "What school did the Intern go to?",
+        validate: validateInput
     }
 ];
 
@@ -112,7 +131,6 @@ function askNext(team) {
                     // Push engineer's answers to the array
                     let engineer = new Engineer(engineerAnswers.name, engineerAnswers.id, engineerAnswers.email, engineerAnswers.github);
                     team.push(engineer);
-
                     // Ask the user which team member to add next
                     askNext(team);
                 });
@@ -123,24 +141,25 @@ function askNext(team) {
                     // Push intern's answers to the array
                     let intern = new Intern(internAnswers.name, internAnswers.id, internAnswers.email, internAnswers.school);
                     team.push(intern);
-
                     // Ask the user which team member to add next
                     askNext(team)
                 });
                 break;
             case "I'm done adding team members":
-                // Generate the HTML for the team using the team array
                 // Use the answers to generate HTML content for the team page
                 const htmlContent = render(team);
-
+                // Create the output directory if it doesn't exist
+                if (!fs.existsSync(OUTPUT_DIR)) {
+                    fs.mkdirSync(OUTPUT_DIR);
+                };
                 // Write the HTML to a file
-                fs.writeFile(outputPath, htmlContent, (err) => {
+                fs.writeFileSync(outputPath, htmlContent, (err) => {
                     // if error console.log the error if not display the message
-                    err ? console.error(err) : console.log("Successfully generated team member's page")
+                    err ? console.error(err) : console.log(`Successfully generated team member's page and saved to ${outputPath}`)
                 })
-            // break;
-            //     default:
-            // console.log("Invalid option selected");
+                break;
+            default:
+                console.log("Invalid option selected");
         }
     })
 }
