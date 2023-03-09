@@ -19,4 +19,6 @@ This Team Profile Generator allows the user to generate a HTML file of their tea
 
 ### Screenshot of Application 
 
-![alt text]()
+![alt text](./assets/images/terminal-screenshot.png)
+
+![alt text](./assets/images/my-team-screenshot.png)
