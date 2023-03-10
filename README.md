@@ -1,6 +1,6 @@
 # Team Profile Generator
 
-This Team Profile Generator allows the user to generate a HTML file of their team members by using a command-line application based on the users input. It uses the [Inquirer package](https://www.npmjs.com/package/inquirer). This allows the user to easily and quickly generate a web page with cards displaying their team members details. 
+This Team Profile Generator allows the user to generate a HTML file of their team members by using a command-line application based on the users input. It uses the [Inquirer package](https://www.npmjs.com/package/inquirer). This allows the user to easily and quickly generate a web page with cards displaying their team member's details. 
 
 ## Installation
 
@@ -17,8 +17,10 @@ This Team Profile Generator allows the user to generate a HTML file of their tea
 4. If there are no errors in the process, there will be a message displayed in the terminal to indicate that your HTML file has been successfully created.
 5. Finally, you can find your generated HTML file inside the output folder, which is located in the same directory as the index.js file.
 
-### Screenshot of Application 
+### Screenshot of Application's Terminal with Users Input
 
 ![alt text](./assets/images/terminal-screenshot.png)
+
+### Screenshot of the Generated HTML
 
 ![alt text](./assets/images/my-team-screenshot.png)
